@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "driver-devtool",
+  "version": "0.1.0",
+  "description": "The Devtool for Custom Edit Driver",
+  "scripts": {
+    "start": "webpack serve",
+    "build": "webpack --env production"
+  },
+  "author": "fun",
+  "license": "ISC",
+  "dependencies": {
+    "gray-matter": "^4.0.2",
+    "marked": "^2.0.1",
+    "v-contextmenu": "^2.9.0",
+    "vue": "^2.6.12",
+    "vue-awesome": "^4.1.0",
+    "vue-codemirror": "^4.0.6",
+    "vue-router": "^3.5.1",
+    "vue-runtime-helpers": "^1.1.2",
+    "vue-splitpane": "^1.0.6",
+    "vue2-perfect-scrollbar": "^1.5.0"
+  }
+}
