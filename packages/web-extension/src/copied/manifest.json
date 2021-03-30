@@ -22,7 +22,7 @@
   ],
   "content_scripts": [
     {
-      "js": ["libs/juqery.js", "libs/Readability.js", "libs/reader.js", "page.js"],
+      "js": ["libs/juqery.js", "libs/Readability.js", "libs/reader.js"],
       "matches": ["http://*/*", "https://*/*"]
     },
     {
@@ -43,13 +43,6 @@
         "http://*/*",
         "https://*/*"
       ]
-    },
-    {
-      "js": ["libs/juqery.js", "segmenftfault.js"],
-      "all_frames": true,
-      "matches": ["http://segmentfault.com/*", "https://segmentfault.com/*", "https://mp.toutiao.com/*",
-        "http://mp.toutiao.com/*"],
-      "run_at": "document_end"
     }
   ],
   "web_accessible_resources": [

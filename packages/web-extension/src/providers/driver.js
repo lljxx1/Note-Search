@@ -1,4 +1,4 @@
-import buildInDrivers from "@wechatsync/drivers";
+import buildInDrivers from "@note-search/providers";
 
 const {
   JianShuAdapter,
@@ -146,7 +146,7 @@ export function getDriver(account) {
   if (account.type == 'imooc') {
     return new ImoocAdapter(account)
   }
-  
+
   throw Error('not supprt account type')
 }
 
@@ -206,7 +206,7 @@ export async function getPublicAccounts() {
       console.log('initlaze custom driver error', e)
     }
   });
- 
+
   var users = []
 
   const stepItems = chunk(drivers, 20);

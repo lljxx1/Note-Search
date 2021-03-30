@@ -1,5 +1,5 @@
 import Sval from 'sval'
-import svalScopes from '@wechatsync/drivers/scopes'
+import svalScopes from '@note-search/providers/scopes'
 
 function getRuntimeScopes() {
   return {

@@ -1,5 +1,5 @@
 {
-  "name": "@wechatsync/drivers",
+  "name": "@note-search/providers",
   "version": "1.0.0",
   "description": "The adapters for publishing article to supported platform ",
   "main": "index.js",

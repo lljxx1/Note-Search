@@ -15,15 +15,8 @@ const entry = (function() {
     'background.js',
     'popup.js',
     'content.js',
-    'segmenftfault.js',
-    'editor.js',
-    'inject.js',
     'styles.scss',
-    'page.js',
     'api.js',
-    'viewer.js',
-    'autoformat.js',
-    'template.js',
   ]
 
   function replaceSuffixes(file) {
