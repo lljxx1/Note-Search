@@ -1,8 +1,8 @@
-// console.log('segmenftfault')
-function testFunc() {
-  console.log('api ready')
+var _appNamespace = require('./config').config._appNamespace;
+
+function testFunc(_appNamespace) {
   var poster = {
-    versionNumber: 1001,
+    versionNumber: 1,
     dev: process.env.WECHAT_ENV === 'development',
   }
 
@@ -12,6 +12,7 @@ function testFunc() {
     eventCb[msg.eventID] = function(err, res) {
       cb(err, res)
     }
+    msg.method = _appNamespace + msg.method;
     window.postMessage(JSON.stringify(msg), '*')
   }
 
@@ -100,11 +101,13 @@ function testFunc() {
     } catch (e) {}
   })
 
-  window.$poster = poster
-  window.$syncer = poster
+  // window.$poster = poster
+  window.$notesearch = poster
 }
 
 setTimeout(function() {
+
+
   var script = document.createElement('script')
   script.type = 'text/javascript'
   script.innerHTML =
@@ -112,7 +115,7 @@ setTimeout(function() {
     testFunc.toString() +
     '; ' +
     testFunc.name +
-    '(); ' +
+    '("'+_appNamespace+'"); ' +
     ' })();'
   document.head.appendChild(script)
   document.head.removeChild(script)
@@ -147,10 +150,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponseA) {
   try {
     console.log('revice', request)
     if (request.method == 'taskUpdate') {
-      // if(_statushandler != null) {
-      //   _statushandler(request.task)
-      // }
-      // window.postMessage
       sendToWindow({
         task: request.task,
         method: 'taskUpdate',
@@ -168,84 +167,108 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponseA) {
   }
 })
 
-var _statushandler = null
 var _sensitiveAPIWhiteList = [
   'https://www.wechatsync.com',
   'https://developer.wechatsync.com',
   'http://localhost:8080',
 ]
 
-window.addEventListener('message', function(evt) {
-  // if (evt.origin == 'https://www.wechatsync.com') {
-  // console.log('from page', evt)
-  try {
-    var action = JSON.parse(evt.data)
-    if (action.method == 'getAccounts') {
-      getAccounts(function() {
-        sendToWindow({
-          eventID: action.eventID,
-          result: allAccounts,
-        })
-      })
-    }
-    if (action.method == 'addTask') {
-      chrome.extension.sendMessage(
-        {
-          action: 'addTask',
-          task: action.task,
-        },
-        function(resp) {
-          console.log('addTask return', resp)
+
+function callBackground(request, callback) {
+  chrome.extension.sendMessage(request, callback)
+}
+
+
+// var _appNamespace = require('./config').config._appNamespace;
+function PageCallServer() {
+  var _handlers = {};
+
+  function addMethod(action, callback) {
+    _handlers[action] = callback
+  }
+
+  function executedMethod(request, sender) {
+    if(request.method) {
+      request.method = request.method.replace(_appNamespace, '')
+      var handler = _handlers[request.method]
+      console.log('executedMethod', request, handler)
+      handler(request, (results) => {
+        if(!results.eventID) {
+          results.eventID = request.eventID
         }
-      )
+        sendToWindow(results)
+      }, sender)
     }
+  }
 
-    if (action.method == 'magicCall') {
-      chrome.extension.sendMessage(
-        {
-          action: 'callDriverMethod',
-          methodName: action.methodName,
-          data: action.data,
-        },
-        function(resp) {
-          sendToWindow({
-            eventID: action.eventID,
-            result: resp,
-          })
+  //
+  function startListenRequest() {
+    window.addEventListener('message', function(evt) {
+      try {
+        var action = JSON.parse(evt.data)
+        if (action.method) {
+          executedMethod(action, evt)
         }
-      )
-    }
+      } catch(e) {
 
-    if (_sensitiveAPIWhiteList.indexOf(evt.origin) > -1) {
-      if (action.method == 'updateDriver') {
-        chrome.extension.sendMessage(
-          {
-            action: 'updateDriver',
-            data: action.data,
-          },
-          function(resp) {
-            sendToWindow({
-              eventID: action.eventID,
-              result: resp,
-            })
-          }
-        )
       }
+    })
+  }
 
-      if (action.method == 'startInspect') {
-        chrome.extension.sendMessage(
-          {
-            action: 'startInspect',
-          },
-          function(resp) {
-            sendToWindow({
-              eventID: action.eventID,
-              result: resp,
-            })
-          }
-        )
-      }
-    }
-  } catch (e) {}
-  // }
+  return {
+    addMethod,
+    startListenRequest
+  }
+}
+
+var pageServer = new PageCallServer();
+
+pageServer.addMethod('magicCall', (action, sendResponse) => {
+  callBackground({
+    action: 'callDriverMethod',
+    methodName: action.methodName,
+    data: action.data,
+  }, (resp) => {
+    sendResponse({
+      result: resp,
+    })
+  })
 })
+
+
+pageServer.addMethod('updateDriver', (action, sendResponse, evt) => {
+  if (_sensitiveAPIWhiteList.indexOf(evt.origin) > -1) {
+    callBackground({
+      action: 'updateDriver',
+      data: action.data,
+    }, (resp) => {
+      sendResponse({
+        result: resp,
+      })
+    })
+  } else {
+    sendResponse({
+      error: 'not support',
+    })
+  }
+})
+
+
+pageServer.addMethod('startInspect', (action, sendResponse, evt) => {
+  if (_sensitiveAPIWhiteList.indexOf(evt.origin) > -1) {
+    callBackground({
+      action: 'startInspect',
+    }, (resp) => {
+      sendResponse({
+        result: resp,
+      })
+    })
+  } else {
+    sendResponse({
+      error: 'not support',
+    })
+  }
+})
+
+
+pageServer.startListenRequest();

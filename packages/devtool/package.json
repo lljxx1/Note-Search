@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "driver-devtool",
+  "name": "devtool",
   "version": "0.1.0",
   "description": "The Devtool for Custom Edit Driver",
   "scripts": {

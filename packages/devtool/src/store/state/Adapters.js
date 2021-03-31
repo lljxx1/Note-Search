@@ -22,14 +22,8 @@ export default class Adapters extends SectionBase {
       items: [
         {
           id: uniqueId(idPrefix),
-          name: 'template.js',
-          content: require('@wechatsync/drivers/src/BaseAdapter?raw'),
-          dirty: false,
-        },
-        {
-          id: uniqueId(idPrefix),
-          name: 'zhihu.js',
-          content: require('@wechatsync/drivers/src/zhihu?raw'),
+          name: 'YuQue.js',
+          content: require('@note-search/providers/src/YuQue?raw').replace('export default provider', 'exports.provider = provider'),
           dirty: false,
         },
       ],

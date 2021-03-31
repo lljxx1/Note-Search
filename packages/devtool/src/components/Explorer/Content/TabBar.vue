@@ -21,7 +21,7 @@
       </template>
     </tabs>
     <ul class="debug-group">
-      <li @click="runCode('delpoy')" title="部署到插件 ⌘ S">
+      <li @click="runCode('deploy')" title="部署到插件 ⌘ S">
         <v-icon name="bolt"></v-icon>
       </li>
       <li @click="runCode('account')" title="账号识别 ⌘ 1">
@@ -94,12 +94,14 @@ export default {
   },
   methods: {
     runCode(key) {
+      console.log('runCode', key)
       if (!isAdapter(this.active)) {
         window.alert('请选择适配器进行调试')
         return
       }
       switch (key) {
         case 'deploy':
+          console.log('start deployCode')
           deployCode(this.active)
           break
         case 'account':

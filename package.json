@@ -53,5 +53,8 @@
     "webpack-dev-server": "^3.11.2",
     "webpack-node-externals": "^2.5.2",
     "zip-webpack-plugin": "^4.0.1"
+  },
+  "dependencies": {
+    "axios-fetch": "^1.1.0"
   }
 }

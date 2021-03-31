@@ -5,6 +5,7 @@ import { store } from './store/store'
 import EntryView from './views/EntryView.vue'
 import AddAccount from './views/AddAccount.vue'
 import TaskDetail from './views/TaskDetail.vue'
+import Search from './views/Search.vue'
 import Mint from 'mint-ui'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -19,6 +20,13 @@ var routes = [
   {
     path: '/',
     component: EntryView,
+    meta: {
+      index: 1,
+    },
+  },
+  {
+    path: '/search',
+    component: Search,
     meta: {
       index: 1,
     },
@@ -40,6 +48,13 @@ var routes = [
     },
   },
 ]
+
+
+import { initializeDriver, getDriverProvider, initDevRuntimeEnvironment } from '@/runtime'
+
+var serviceFactory = require('./providers/factory')
+// window.currentDriver = localDriver
+initDevRuntimeEnvironment();
 
 var winBackgroundPage = chrome.extension.getBackgroundPage()
 var db = winBackgroundPage.db

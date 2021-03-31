@@ -56,7 +56,7 @@ export default {
     window.addEventListener('beforeunload', function () {
       saveSection()
     })
-    window.$syncer.startInspect(function (args) {
+    window.$notesearch.startInspect(function (args) {
       log.addInspectLog(args)
       console.log('log', args)
     })

@@ -2,9 +2,10 @@ function importAll(r) {
   const modules = {}
   r.keys().forEach(key => {
     const module = r(key)
-    const moduleName = module.default ? module.default.name : null
+    console.log(module)
+    const moduleName = module.default ?  module.default.type : null
     if (moduleName && moduleName !== 'BaseAdapter') {
-      modules[moduleName] = module.default
+      modules[module.default.type] = module.default
     }
   })
   return modules

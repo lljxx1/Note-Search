@@ -2,11 +2,12 @@ import axios from "axios"
 import md5 from "js-md5"
 import juice from "juice/client"
 import turndown from "turndown"
-import tools from './tools'
+import axiosFetch from 'axios-fetch'
+// import tools from './tools'
 
 export default {
-  tools,
   turndown,
+  axiosFetch,
   axios,
   md5,
   juice,

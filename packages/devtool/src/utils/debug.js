@@ -5,11 +5,12 @@ import matter from 'gray-matter'
 import marked from 'marked'
 
 export async function deployCode({ name, content }) {
+  console.log('deployCode start')
   log.addInfoLog('部署代码到插件...')
 
   try {
     await new Promise((resolve, reject) => {
-      window.$syncer.updateDriver(
+      window.$notesearch.updateDriver(
         {
           name: getFileName(name),
           code: content,
@@ -43,7 +44,10 @@ async function testUserInfoGather(driverName) {
   log.addInfoLog('测试账号识别...')
 
   const callArgs = {
-    methodName: 'getMetaData',
+    methodName: 'search',
+    args: {
+      keyword: '文章',
+    },
     account: {
       type: driverName,
     },
@@ -51,7 +55,7 @@ async function testUserInfoGather(driverName) {
 
   try {
     const accountResult = await new Promise((resolve, reject) => {
-      window.$syncer.magicCall(callArgs, res => {
+      window.$notesearch.magicCall(callArgs, res => {
         if (res.error) {
           reject(res)
         } else {
@@ -104,7 +108,7 @@ async function testImageUpload(driverName) {
         },
       }
       return new Promise(resolve => {
-        window.$syncer.uploadImage(actionData, res => {
+        window.$notesearch.uploadImage(actionData, res => {
           resolve({
             origin: testImageSrc,
             result: res,
@@ -175,7 +179,7 @@ async function testArticleUpload(driverName) {
       })
     }
 
-    window.$syncer.addTask(
+    window.$notesearch.addTask(
       {
         post: payload,
         accounts: [

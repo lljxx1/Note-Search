@@ -1,15 +1,18 @@
 {
   "manifest_version": 2,
-  "name": "Note-Search",
-  "description": "笔记搜索",
+  "name": "Note Search",
+  "description": "跨平台笔记库搜索场景植入",
   "icons": {
     "16": "images/logo.png",
     "48": "images/logo.png",
     "128": "images/logo.png"
   },
-  "version": "1.0.9",
+  "version": "0.0.1",
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://hm.baidu.com https://cdn.jsdelivr.net https://www.google.com/ https://ajax.googleapis.com/; object-src 'self'",
-  "options_page": "index.html",
+  "options_ui": {
+    "page": "index.html",
+    "open_in_tab": false
+  },
   "permissions": [
     "contextMenus",
     "webRequest",
@@ -22,18 +25,8 @@
   ],
   "content_scripts": [
     {
-      "js": ["libs/juqery.js", "libs/Readability.js", "libs/reader.js"],
-      "matches": ["http://*/*", "https://*/*"]
-    },
-    {
-      "js": [
-        "libs/juqery.js",
-        "libs/popper.min.js",
-        "libs/bootstrap.min.js",
-        "content.js"
-      ],
-      "css": ["css/boot.css"],
-      "matches": ["http://mp.weixin.qq.com/*", "https://mp.weixin.qq.com/*"],
+      "js": ["libs/juqery.js", "libs/Readability.js", "content.js"],
+      "matches": ["http://*/*", "https://*/*"],
       "run_at": "document_end"
     },
     {
@@ -46,10 +39,7 @@
     }
   ],
   "web_accessible_resources": [
-    "view.html",
-    "templates.html",
-    "autoformat.js",
-    "inject.js",
+    "index.html",
     "images/*"
   ],
   "background": {

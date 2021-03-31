@@ -63,10 +63,6 @@ body {
 body,
 html {
   /* min-height: 800px; */
-  width: 425px;
-  height: 500px;
-  max-height: 700px;
-  background-color: #f7f7f7;
 }
 
 .tab-bar {

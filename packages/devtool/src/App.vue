@@ -24,7 +24,7 @@ export default {
   methods: {
     pollCheckExtension() {
       const isInjected =
-        Object.prototype.toString.call(window.$syncer) === '[object Object]'
+        Object.prototype.toString.call(window.$notesearch) === '[object Object]'
 
       this.extensionInstalled = isInjected
       this.checkTimes = isInjected ? 0 : this.checkTimes + 1
