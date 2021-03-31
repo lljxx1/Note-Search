@@ -86,7 +86,7 @@ class WolaiService {
     }
 
     if (data.data.result) {
-      results.total = data.data.result.length
+      results.total = data.data.result.items.length
       results.rows = data.data.result.items.map(_ => {
         return {
           title: _.title,
