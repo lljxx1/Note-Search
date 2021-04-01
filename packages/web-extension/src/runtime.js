@@ -11,6 +11,7 @@ function getRuntimeScopes() {
     Blob: Blob,
     Promise: Promise,
     setCache: setCache,
+    getCache: getCache,
     initializeFrame: initializeFrame,
     requestFrameMethod: requestFrameMethod,
     modifyRequestHeaders: modifyRequestHeaders,
@@ -78,6 +79,14 @@ function setCache(name, value) {
   d[name] = value
   chrome.storage.local.set(d, function() {
     console.log('cache set')
+  })
+}
+
+function getCache(name, cb) {
+  chrome.storage.local.get(name, function(
+    result
+  ) {
+    cb(result)
   })
 }
 

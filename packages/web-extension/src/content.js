@@ -226,6 +226,18 @@ guarder.addPageHandler('www.google.com', handle => {
     }
     setTimeout(loop, 300);
   })();
-})
+});
 
-guarder.execute()
+
+// loading setting and init
+getCache('settings', (value) => {
+  var disabled = false
+  if(value) {
+    var settings = JSON.parse(value)
+    console.log('settings', settings)
+    if(!settings.enable) disabled = true
+  }
+  if(!disabled) {
+    guarder.execute()
+  }
+})

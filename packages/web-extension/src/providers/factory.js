@@ -49,6 +49,13 @@ export function getAllServiceTypes() {
   return Object.keys(buildInProviders).concat(Object.keys(_customService))
 }
 
+
+export function getAllService() {
+  return Object.keys(buildInProviders).concat(Object.keys(_customService)).map(type => {
+    return getServiceDefinition({ type })
+  })
+}
+
 function isPromise(obj) {
   return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 }

@@ -1,5 +1,5 @@
 
-require("./providers/driverCodePack");
+// require("./providers/driverCodePack");
 import { initializeDriver, getDriverProvider, initDevRuntimeEnvironment } from '@/runtime'
 
 var serviceFactory = require('./providers/factory')

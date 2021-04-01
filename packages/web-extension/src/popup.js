@@ -2,9 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueMoment from 'vue-moment'
 import { store } from './store/store'
-import EntryView from './views/EntryView.vue'
-import AddAccount from './views/AddAccount.vue'
-import TaskDetail from './views/TaskDetail.vue'
+import Option from './views/Option.vue'
 import Search from './views/Search.vue'
 import Mint from 'mint-ui'
 import ElementUI from 'element-ui'
@@ -19,10 +17,7 @@ Vue.use(VueMoment)
 var routes = [
   {
     path: '/',
-    component: EntryView,
-    meta: {
-      index: 1,
-    },
+    component: Option,
   },
   {
     path: '/search',
@@ -30,23 +25,7 @@ var routes = [
     meta: {
       index: 1,
     },
-  },
-  {
-    name: 'AddAccount',
-    path: '/add-account',
-    component: AddAccount,
-    meta: {
-      index: 1,
-    },
-  },
-  {
-    name: 'TaskDetail',
-    path: '/task-detail',
-    component: TaskDetail,
-    meta: {
-      index: 1,
-    },
-  },
+  }
 ]
 
 
