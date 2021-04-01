@@ -45,7 +45,10 @@ const provider = {
     countable: true,
   },
   type: 'YuQue',
-  displayName: '语雀',
+  meta: {
+    icon: 'https://www.yuque.com/favicon.ico',
+    displayName: '语雀',
+  },
   service: YuQueService,
 }
 

@@ -142,7 +142,10 @@ const provider = {
     countable: true,
   },
   type: 'Notion',
-  displayName: 'Notion',
+  meta: {
+    icon: 'https://www.notion.so/images/favicon.ico',
+    displayName: 'Notion',
+  },
   service: NotionService,
 }
 

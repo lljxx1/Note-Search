@@ -63,6 +63,8 @@ body {
 body,
 html {
   /* min-height: 800px; */
+  height: 100%;
+  overflow: hidden;
 }
 
 .tab-bar {

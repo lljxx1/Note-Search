@@ -107,7 +107,10 @@ const provider = {
     countable: true,
   },
   type: 'Wolai',
-  displayName: '我来',
+  meta: {
+    icon: 'https://static2.wolai.com/dist/favicon.ico',
+    displayName: '我来',
+  },
   service: WolaiService,
 }
 

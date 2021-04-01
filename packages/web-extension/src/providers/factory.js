@@ -24,7 +24,7 @@ export function getService(account) {
   throw Error('not support service type')
 }
 
-export function getServiceDefination(account) {
+export function getServiceDefinition(account) {
   if(_customService[account.type]) {
     const custom = _customService[account.type]
     return custom['meta']
@@ -64,14 +64,14 @@ export async function callAllServiceMethod(method, args) {
       const results = await Promise.all(
         stepItem.map((type) => {
           const serviceInstance = getService({ type })
-          const serviceDefination = getServiceDefination({ type })
+          const serviceDefinition = getServiceDefinition({ type })
           return new Promise((resolve, reject) => {
             const returnResult = serviceInstance[method].apply(serviceInstance, args)
             console.log('returnResult', returnResult)
             if (isPromise(returnResult)) {
               returnResult.then((res) => {
                 resolve({
-                  displayName: serviceDefination.displayName,
+                  meta: serviceDefinition.meta,
                   serviceType: type,
                   result: res,
                 })
