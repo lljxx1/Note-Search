@@ -9,8 +9,8 @@ export default {
   turndown,
   axiosFetch,
   axios,
-  md5,
-  juice,
+  // md5,
+  // juice,
   // Runtime Host Need implementation
   console () {},
   $ () { return {} },

@@ -115,37 +115,4 @@ body.option {
 #option-section {
   padding: 12px;
 }
-
-#search-section .search-item {
-  /* padding: 5px 15px; */
-  margin-bottom: 12px;
-}
-
-#search-section .search-item h2 {
-  font-size: 16px;
-  color: #262626;
-}
-
-.search-item .item-desc {
-  color: #999;
-  font-size: 14px;
-  line-height: 18px;
-  /* overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap; */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-.search-item .item-desc gzknfouu,
-.search-item .item-desc em {
-  color: #c73632;
-  font-style: normal;
-}
-
-.search-result-container {
-  max-height: calc(100vh - 60px - 90px);
-  overflow-y: auto;
-}
 </style>
