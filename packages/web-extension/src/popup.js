@@ -1,18 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import VueMoment from 'vue-moment'
-import { store } from './store/store'
 import Option from './views/Option.vue'
 import Search from './views/Search.vue'
-import Mint from 'mint-ui'
+// import Mint from 'mint-ui'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(ElementUI)
 
-Vue.use(Mint)
+// Vue.use(Mint)
 Vue.use(VueRouter)
-Vue.use(VueMoment)
 
 var routes = [
   {
@@ -31,19 +28,14 @@ var routes = [
 
 import { initializeDriver, getDriverProvider, initDevRuntimeEnvironment } from '@/runtime'
 
-var serviceFactory = require('./providers/factory')
-// window.currentDriver = localDriver
+// var serviceFactory = require('./providers/factory')
 initDevRuntimeEnvironment();
 
-var winBackgroundPage = chrome.extension.getBackgroundPage()
-var db = winBackgroundPage.db
-window.db = db
 
 var router = new VueRouter({
   routes,
 })
 const app = new Vue({
   router,
-  store,
 })
 app.$mount('#app')

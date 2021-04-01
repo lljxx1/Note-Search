@@ -1,8 +1,7 @@
 import buildInProviders from "@note-search/providers";
 
-console.log('buildInProviders', buildInProviders)
-
 const _customService = {};
+
 export function addService(name, serviceMeta) {
   _customService[name] = {
     name: name,
@@ -60,7 +59,7 @@ function isPromise(obj) {
   return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 }
 
-export async function callAllServiceMethod(method, args) {
+export async function callAllServiceMethod(method, args, specifyTypes = null) {
   const allServiceTypes = getAllServiceTypes()
   const stepItems = chunk(allServiceTypes, 20);
   const startTime = Date.now()
