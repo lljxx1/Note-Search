@@ -28,6 +28,7 @@
         "https://www.google.com.hk/*",
         "https://www.notion.so/*",
         "https://api.wolai.com/*",
+        "https://www.diigo.com/*",
         "https://www.yuque.com/*"
       ],
       "run_at": "document_end"
