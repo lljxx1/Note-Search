@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Note Search",
+  "name": "笔记搜索",
   "description": "跨平台笔记库搜索场景植入",
   "icons": {
     "16": "images/logo.png",
@@ -8,32 +8,35 @@
     "128": "images/logo.png"
   },
   "version": "0.0.1",
-  "content_security_policy": "script-src 'self' 'unsafe-eval' https://hm.baidu.com https://cdn.jsdelivr.net https://www.google.com/ https://ajax.googleapis.com/; object-src 'self'",
+  "content_security_policy": "script-src 'self' 'unsafe-eval' object-src 'self'",
   "options_ui": {
     "page": "index.html",
     "open_in_tab": false
   },
   "permissions": [
-    "contextMenus",
     "webRequest",
     "webRequestBlocking",
-    "storage",
-    "notifications",
-    "http://*/*",
-    "https://*/*"
+    "storage"
   ],
   "content_scripts": [
     {
-      "js": ["libs/juqery.js", "libs/Readability.js", "content.js"],
-      "matches": ["http://*/*", "https://*/*"],
+      "js": ["libs/juqery.js", "content.js"],
+      "matches": [
+        "http://www.baidu.com/*",
+        "https://www.baidu.com/*",
+        "https://www.google.com/*",
+        "https://www.google.com.hk/*",
+        "https://www.notion.so/*",
+        "https://api.wolai.com/*",
+        "https://www.yuque.com/*"
+      ],
       "run_at": "document_end"
     },
     {
       "js": ["libs/juqery.js", "api.js"],
       "all_frames": true,
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "http://localhost:8080/"
       ]
     }
   ],

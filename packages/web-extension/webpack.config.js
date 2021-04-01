@@ -59,7 +59,7 @@ module.exports = env => {
       }),
       new ZipPlugin({
         path: path.resolve(__dirname, 'zip'),
-        filename: 'WechatSync.zip',
+        filename: 'Note-Search.zip',
       }),
     ],
   }
