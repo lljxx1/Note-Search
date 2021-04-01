@@ -52,7 +52,7 @@ import { callAllServiceMethod, getAllService } from '../providers/factory'
 export default {
   data() {
     return {
-      currentVersion: '0.0.1',
+      currentVersion: '0.0.2',
       loading: false,
       activeName: 'about',
       noResult: false,
