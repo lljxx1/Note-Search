@@ -142,6 +142,7 @@ const provider = {
     countable: true,
   },
   type: 'Notion',
+  displayName: 'Notion',
   service: NotionService,
 }
 

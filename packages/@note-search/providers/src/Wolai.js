@@ -107,6 +107,7 @@ const provider = {
     countable: true,
   },
   type: 'Wolai',
+  displayName: '我来',
   service: WolaiService,
 }
 

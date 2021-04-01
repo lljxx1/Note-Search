@@ -45,6 +45,7 @@ const provider = {
     countable: true,
   },
   type: 'YuQue',
+  displayName: '语雀',
   service: YuQueService,
 }
 
