@@ -1,4 +1,4 @@
-# Note-Search
+# 笔记搜索扩展
 
 ![](https://img.shields.io/github/v/release/lljxx1/Note-Search.svg)
 ![](https://img.shields.io/github/last-commit/lljxx1/Note-Search)
