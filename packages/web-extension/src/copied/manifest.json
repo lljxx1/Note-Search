@@ -22,6 +22,8 @@
     {
       "js": ["libs/juqery.js", "content.js"],
       "matches": [
+        "https://flomoapp.com/*",
+        "http://flomoapp.com/*",
         "http://www.baidu.com/*",
         "https://www.baidu.com/*",
         "https://www.google.com/*",
