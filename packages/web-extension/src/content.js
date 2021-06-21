@@ -111,7 +111,8 @@ class SearchFrame {
       width: '100%',
       height: '100%',
       padding: '12px 0 5px',
-      'min-height': '150px',
+      'min-width': '377px',
+      'min-height': '155px',
       border: 'none',
     })
     $(dom).append(this._frameContainer)
